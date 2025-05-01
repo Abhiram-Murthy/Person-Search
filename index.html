@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search Person</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    input{
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    }
+    #result {
+      margin-top: 20px;
+    }
+    img {
+      max-width: 300px;
+      border-radius: 10px;
+    }
+    button
+    {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <h2>Search for a Person</h2>
+  <input type="text" id="searchInput" placeholder="Enter name..." />
+  <button onclick="searchPerson()">Search</button>
+  <div id="result"></div>
+
+  <script>
+    // Store name-image pairs
+    const people = {
+      "geethanjali": "Geethanjali.jpg",
+      "manasi": "Manasi.jpg",
+      "abhiram": "Abhiram.jpg",
+      "srvanthi":"Srvanthi.jpg",
+      "shivani":"Shivani.jpg",
+      "aryan": "Aryan.jpg",
+      "charan": "Charan.jpg",
+      "jonnycharan": "JonnyCharan.jpg",
+      "vardhan":"Vardhan.jpg",
+      "coolvardhan":"CoolVardhan.jpg",
+      "varnit": "Varnit.jpg",
+      "advika": "Advika.jpg",
+      "sreekar":"Sreekar.jpg",
+      "bharath":"Bharath.jpg",
+      "jp": "JP.jpg",
+      "cooljp":"CoolJp",
+      "mohana": "Mohana.jpg",
+      "jaipreethonscooty":"JaipreethOnScooty.jpg",
+      "rishik":"Rishik.jpg",
+    };
+
+    function searchPerson() {
+      const inputName = document.getElementById('searchInput').value.trim().toLowerCase();
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = '';
+
+      if (inputName === '') {
+        resultDiv.innerHTML = '<p>Please enter a name.</p>';
+        return;
+      }
+
+      const imageUrl = people[inputName];
+
+      if (imageUrl) {
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = inputName;
+        resultDiv.innerHTML = `<h3>${inputName.charAt(0).toUpperCase() + inputName.slice(1)}</h3>`;
+        resultDiv.appendChild(img);
+      } else {
+        resultDiv.innerHTML = '<p>No match found.</p>';
+      }
+    }
+  </script>
+</body>
+</html>
